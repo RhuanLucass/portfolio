@@ -4,7 +4,7 @@
   box-sizing: border-box;
   list-style-type: none;
   font-family: 'Roboto', sans-serif;
-  letter-spacing: .18rem;
+  letter-spacing: .14rem;
   user-select: none;
 }
 
@@ -37,9 +37,6 @@ a, img{
   -webkit-user-drag: none;
 }
 
-p{
-  line-height: 1.5;
-}
 
 .container{
   max-width: 1280px;
@@ -113,7 +110,7 @@ header nav ul li a:hover{
 }
 
 header nav ul li a.current{
-  border-bottom: .5rem solid var(--font-color-secondary);
+  border-bottom: .3rem solid var(--font-color-secondary);
   font-weight: bold;
 }
 
@@ -212,7 +209,7 @@ main .description-main .text-main p:not(:nth-child(3)){
 }
 .chevrons {
   padding-top: 4px;
-  margin-left: -7px;
+  margin-left: -5px;
   margin-top: 35px;
   width: 30px;
   display: flex;
@@ -366,7 +363,7 @@ main .description-main .text-main p:not(:nth-child(3)){
   border-radius: .6rem;
   background-color: var(--background-secondary);
   border: .3rem solid var(--font-color-third);
-  transition: .5s;
+  transition: .3s;
 }
 
 .description-project .access a:hover{
@@ -395,39 +392,75 @@ main .description-main .text-main p:not(:nth-child(3)){
 
 #about{
   background: var(--background-secondary);
-  color: #fff;
-  width: 100vw;
-  height: 100vh;
+  color: var(--font-color-third);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #about .container{
-  align-items: center;
-  justify-content:space-around;
-}
-
-#about .description-about{
-  max-width: 70%;
+  display: block;
 }
 
 #about .description-about h2{
   font-size: 3rem;
   text-align: center;
-  padding-bottom: 1rem;
+  padding: 5rem 0 2rem 0;
 }
 
 #about .description-about .text-about{
   padding: 2rem;
+  max-width: 75%;
+  margin: 0 auto;
 }
 
 #about .description-about p{
   font-size: 1.6rem;
+  font-weight: bold;
   text-indent: 1rem;
 }
 
-#about .description-about .competences{
-  width: 30%;
+#about .competences{
+  margin-top: 1rem;
+  margin: 0 auto;
+  max-width: 75%;
+
 }
 
-.competences img{
-  width: 50px;
+#about .competences h3{
+  font-size: 2rem;
+  text-align: center;
+  margin: 3rem;
+}
+
+#about .competences img{
+  width: 5rem;
+  cursor: pointer;
+  filter: grayscale(1);
+  transition: .5s;
+}
+
+#about .competences img:hover{
+  transform: scale(1.2);
+  filter: grayscale(0);
+}
+
+#about .competences .competences-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+#about .competences h4{
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 2rem 0;
+}
+
+#about .competences .starting{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
