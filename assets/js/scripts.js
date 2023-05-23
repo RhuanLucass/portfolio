@@ -46,3 +46,18 @@ function switchMode(){
   html.setAttribute('data-theme', 'dark-mode') : 
   html.removeAttribute('data-theme');
 }
+
+
+// const container = document.querySelector('#home .image-main .image');
+// const imagem = document.querySelector('#home .image-main img');
+
+// container.addEventListener('mousemove', (e) => {
+//   const posX = e.clientX / container.offsetWidth;
+//   const posY = e.clientY / container.offsetHeight;
+  
+//   imagem.style.transform = `rotateY(${posX * 30 - 15}deg) rotateX(${-posY * 30 + 15}deg)`;
+// });
+
+// container.addEventListener('mouseleave', () => {
+//   imagem.style.transform = 'rotate(0deg)';
+// });

@@ -16,47 +16,50 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <!-- <div class="overlay"></div> -->
-  <div id="mode">
-    <label>
-      <input type="checkbox">
-      <i class="fa-solid fa-moon"></i>
-      <span class="toggle"></span>
-      <i class="fa-solid fa-sun"></i>
-      <span class="animate-bg"></span>
-    </label>
-  </div>
-
+  <div class="overlay"></div>
   <header>
     <div class="container">
       <div class="logo">
         <h1>Rhuan Lucas</h1>
       </div>
-      <div class="icon-bars">
-        <span class="bar-top"></span>
-        <span class="bar"></span>
-        <span class="bar-bottom"></span>
+
+      <div class="menu-wrapper">
+        <nav>
+          <ul>
+            <li><a class="current" href="#home">Início</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#about">Sobre mim</a></li>
+            <li><a href="#skills">Habilidades</a></li>
+            <li><a href="#contact">Contato</a></li>
+          </ul>
+        </nav>
+        <div id="mode">
+          <label class="link" data-ballon="dark mode">
+            <input type="checkbox">
+            <i class="fa-solid fa-moon"></i>
+            <span class="toggle"></span>
+            <i class="fa-solid fa-sun"></i>
+          </label>
+        </div>
+        <div class="icon-bars">
+          <span class="bar-top"></span>
+          <span class="bar"></span>
+          <span class="bar-bottom"></span>
+        </div>
       </div>
-      <nav>
-        <ul>
-          <li><a class="current" href="#home">Início</a></li>
-          <li><a href="#portfolio">Portfólio</a></li>
-          <li><a href="#about">Sobre mim</a></li>
-          <li><a href="#skills">Habilidades</a></li>
-          <li><a href="#contact">Contato</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
   <main id="home">
     <div class="container">
       <div class="image-main">
-        <img src="assets/images/main/main.png" alt="Desenho representando o autor do portfólio.">
+        <div class="image">
+          <img src="assets/images/main/main.png" alt="Desenho representando o autor do portfólio.">
+        </div>
 
         <div class="links">
-          <a href="https://github.com/RhuanLucass"><i class="fa-brands fa-github"></i></a>
-          <a target="_blank" href="https://www.linkedin.com/in/rhuanlucass/"><i class="fa-brands fa-linkedin"></i></a>
+          <a class="link" data-ballon="github"  target="_blank" href="https://github.com/RhuanLucass"><i class="fa-brands fa-github"></i></a>
+          <a class="link" data-ballon="linkedin"  target="_blank" href="https://www.linkedin.com/in/rhuanlucass/"><i class="fa-brands fa-linkedin"></i></a>
         </div>
       </div>
       <div class="description-main">
@@ -97,8 +100,8 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
 
             <div class="access">
-              <a target="_blank" href=""><i class="fa-solid fa-globe"></i></a>
-              <a target="_blank" href=""><i class="fa-brands fa-github"></i></a>
+              <a class="link" data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i></a>
+              <a class="link" data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
         </div>
@@ -108,8 +111,8 @@
             <h4>Nome do site</h4>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
             <div class="access">
-              <a target="_blank" href=""><i class="fa-solid fa-globe"></i></a>
-              <a target="_blank" href=""><i class="fa-brands fa-github"></i></a>
+              <a class="link" data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i></a>
+              <a class="link" data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i></a>
             </div>
           </div>
         </div>
@@ -146,20 +149,45 @@
       <div id="skills" class="competences">
           <h3>Habilidades</h3>
           <div class="competences-wrapper">
-            <img src="assets/images/competences/html.png" alt="html">
-            <img src="assets/images/competences/css.png" alt="css">
-            <img src="assets/images/competences/js.png" alt="javascript">
-            <img src="assets/images/competences/php.png" alt="php">
-            <img src="assets/images/competences/sql.png" alt="sql">
-            <img src="assets/images/competences/git.png" alt="git">
-            <img src="assets/images/competences/jquery.png" alt="jquery">
-            <img src="assets/images/competences/java.png" alt="java">
-            <img src="assets/images/competences/c.png" alt="linguagem c">
+            <span class="link" data-ballon="html" >
+              <img src="assets/images/competences/html.png" alt="html">
+            </span>
+            <span class="link" data-ballon="css" >
+              <img src="assets/images/competences/css.png" alt="css">
+            </span>
+            <span class="link" data-ballon="javascript" >
+              <img src="assets/images/competences/js.png" alt="javascript">
+            </span>
+            <span class="link" data-ballon="php" >
+              <img src="assets/images/competences/php.png" alt="php">
+            </span>
+            <span class="link" data-ballon="sql" >              
+              <img src="assets/images/competences/sql.png" alt="sql">
+            </span>
+            <span class="link" data-ballon="git" >            
+              <img src="assets/images/competences/git.png" alt="git">
+            </span>
+            <span class="link" data-ballon="jquery" >              
+              <img src="assets/images/competences/jquery.png" alt="jquery">
+            </span>
+            <span class="link" data-ballon="wordpress" >              
+              <img src="assets/images/competences/wordpress.png" alt="wordpress">
+            </span>
+            <span class="link" data-ballon="java" >              
+              <img src="assets/images/competences/java.png" alt="java">
+            </span>
+            <span class="link" data-ballon="linguagem c" >              
+              <img src="assets/images/competences/c.png" alt="linguagem c">
+            </span>
           </div>
           <h4>Iniciando em:</h4>
           <div class="starting">
-            <img src="assets/images/competences/react.png" alt="react">
-            <img src="assets/images/competences/nodejs.png" alt="node js">
+            <span class="link" data-ballon="react" >              
+              <img src="assets/images/competences/react.png" alt="react">
+            </span>
+            <span class="link" data-ballon="node js" >            
+              <img src="assets/images/competences/nodejs.png" alt="node js">
+            </span>
           </div>
         </div>
     </div>
@@ -204,6 +232,8 @@
       <p>Todos os direitos reservados</p>
     </div>
   </footer>
+  <div class="balloon"></div>
+
 
   <script src="https://kit.fontawesome.com/dc951fd168.js" crossorigin="anonymous"></script>
   <script src="assets/js/scripts.js"></script>
