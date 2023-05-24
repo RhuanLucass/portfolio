@@ -153,7 +153,7 @@ input, textarea{
 .link:hover::before {
   content: attr(data-ballon);
   position: absolute;
-  top: -4rem;
+  bottom: -4rem;
   left: 50%;
   transform: translateX(-50%);
   padding: .5rem;
@@ -162,7 +162,7 @@ input, textarea{
   box-shadow: var(--font-color-main) 0 0 15px;
   font-size: 1.2rem;
   border-radius: .5rem;
-  z-index: 10;
+  z-index: 4;
   white-space: nowrap;
 }
 
@@ -178,7 +178,7 @@ header{
 }
 
 header .container{
-  height: auto;
+  height: 100%;
   padding: 0 2%;
   justify-content: space-between;
 }
@@ -194,6 +194,12 @@ header .logo h1{
   text-shadow: 0 0 25px var(--font-color-main);
   letter-spacing: 0;
 }
+
+header .menu-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 
 header .icon-bars{
   display: none;
@@ -247,7 +253,7 @@ header .icon-bars{
 }
 
 header nav{
-  width: 70%;
+  width: 90%;
 }
 
 header nav ul{
@@ -499,6 +505,9 @@ main .description-main .text-main p:nth-child(3){
 .project-single img{
   transition: .5s;
   position: relative;
+  max-width: 30%;
+  border-radius: .4rem;
+  box-shadow: var(--color-shadow) 0 0 15px;
 }
 
 .project-single img:hover{
@@ -506,12 +515,6 @@ main .description-main .text-main p:nth-child(3){
   position: relative;
   z-index: 2;
   box-shadow: var(--font-color-main) 0 0 15px;
-}
-
-.project-single img{
-  max-width: 30%;
-  border-radius: .4rem;
-  box-shadow: var(--color-shadow) 0 0 15px;
 }
 
 .project-single .description-project{
@@ -529,7 +532,7 @@ main .description-main .text-main p:nth-child(3){
 }
 
 .description-project .access{
-  margin-top:2rem;
+  margin-top: 2rem;
   text-align: center;
   display: flex;
   align-items: center;
@@ -546,10 +549,10 @@ main .description-main .text-main p:nth-child(3){
   padding: .8rem;
   border-radius: .5rem;
   transition: .3s;
-  font-size: 2.5rem;
+  font-size: 1.7rem;
+  font-weight: bold;
   box-shadow: var(--color-shadow) 0 0 15px;
 }
-
 
 .description-project .access a:hover{
   box-shadow: var(--font-color-main) 0 0 15px;
@@ -804,15 +807,17 @@ footer p{
   }
   
   .overlay{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: fixed;
+    top: -10rem;
+    bottom: -10rem;
+    left: -10rem;
+    right: -10rem;
     background-color: #00000080;
-    z-index: 15;
+    z-index: 5;
     display: none;
   }
+
+  /* TODO(Rhuan): add function to overlay on click in menu */
   
   /*** HEADER ***/
   
@@ -836,7 +841,7 @@ footer p{
     transition: .5s;
     right: 0;
     overflow-y: hidden;
-    z-index: 5;
+    z-index: 6;
   }
   
   
@@ -872,10 +877,143 @@ footer p{
   /*** MAIN ***/
 
   main .description-main h1{
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .text-main .name{
     font-size: 6.5rem;
+  }
+}
+
+@media screen and (max-width: 764px){
+  header .logo h1{
+    font-size: 3rem;
+  }
+
+  /*** MAIN ***/
+  
+  main{
+    height: 70vh;
+  }
+
+  main .image-main{
+    display: none;
+  }
+
+  /*** PORTFÓLIO ***/
+  
+  #portfolio .description-port{
+    max-width: 100%;
+  }
+
+  
+  #portfolio .projects-wrapper .project-single{
+    flex-direction: column;
+    gap: 2rem;
+    padding: 4rem 0;
+  }
+  
+  .projects-wrapper .project-single.reverse{
+    flex-direction: row;
+  }
+  
+  .project-single img{
+    max-width: 70%;
+  }
+  
+  .project-single .description-project{
+    max-width: 90%;
+  }
+  
+  .description-project .access{
+    justify-content: center;
+  }
+  
+  .project-single.reverse .description-project .access{
+    justify-content: center;
+  }  
+  
+  /*** SOBRE ***/
+  
+  #about .description-about .text-about{
+    max-width: 100%;
+  }
+  
+  #about .competences .competences-wrapper{
+    flex-wrap: wrap;
+  }
+  
+  #about .competences img{
+    width: 5rem;
+    cursor: pointer;
+    transition: .5s;
+    filter: drop-shadow(var(--color-shadow) 0 0 5px);
+    -webkit-filter: drop-shadow(var(--color-shadow) 0 0 5px);
+  }
+  
+  #about .competences img:hover{
+    filter: none;
+    -webkit-filter: none;
+  }
+  
+  /*** CONTATO ***/
+  
+  #contact .description-contact{
+    max-width: 100%;
+  }
+  
+  #contact .content-contact{
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content-contact form{
+    width: 80%;
+    max-width: none;
+  }
+  
+  .content-contact .contacts-wrapper{
+    width: auto;
+    margin-top: 3rem;
+  }
+}
+
+@media screen and (max-width: 300px){
+  p{
+    font-size: 1.5rem;
+  }
+
+  /*** HEADER ***/
+  header .logo h1{
+    font-size: 2rem;
+  }
+  
+  /*** MAIN ***/
+  
+  main{
+    height: 80vh;
+  }
+
+  main .description-main h1{
+    font-size: 1.7rem;
+    line-height: 1;
+  }
+
+    /*** PORTFÓLIO ***/
+
+    .project-single img{
+      max-width: 80%;
+    }
+
+    .description-project .access a{
+      font-size: 1.5rem;
+    }
+
+  /*** ABOUT ***/
+
+  #about .competences img{
+    width: 4rem;
   }
 }
