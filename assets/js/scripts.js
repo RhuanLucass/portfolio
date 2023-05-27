@@ -58,7 +58,7 @@ function scrollId(e){
 
   if(scrolled === false){
     const element = e.target;
-    const to = getScrollTop(element) - 50;
+    const to = getScrollTop(element) - 20;
 
     smoothScrollTo(to, 2000);
     scrolled = true;
@@ -98,4 +98,35 @@ function smoothScrollTo(endY, duration) {
     }
     window.scroll(0, newY);
   }, 1000 / 60); // 60 fps
+}
+
+const dataAnimation = document.querySelectorAll('[data-animation]');
+
+window.addEventListener("scroll", scrollToPosition);
+
+function scrollToPosition(e){
+  e.preventDefault();
+  const windowTop = window.scrollY + window.innerHeight * 0.85;
+  const scrollTop = window.scrollY + window.innerHeight * 0.5;
+  
+  dataAnimation.forEach((element) => {
+    if(windowTop > element.offsetTop){
+      sectionMenu(scrollTop);
+    }
+  })
+  
+}
+
+function sectionMenu(scrollTop){
+  links.forEach((link) => {
+    const href = link.getAttribute("href");
+    const element = document.querySelector(href);
+    const posSection = element.offsetTop;
+    const height = element.clientHeight;
+
+    if(scrolled === false && posSection <= scrollTop && posSection + height > scrollTop){
+      document.querySelector('.current').classList.remove('current');
+      link.classList.add('current');
+    }
+  })
 }

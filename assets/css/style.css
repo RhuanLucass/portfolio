@@ -50,7 +50,7 @@ a{
   text-decoration: none;
 }
 
-img{
+img, #mode{
   user-select: none;
 }
 
@@ -593,7 +593,7 @@ main .description-main .text-main p:nth-child(3){
 }
 
 #about .description-about .text-about{
-  padding: 2rem;
+  /* padding: 2rem; */
   max-width: 75%;
   margin: 0 auto;
 }
