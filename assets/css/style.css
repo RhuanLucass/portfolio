@@ -201,6 +201,7 @@ input, textarea{
 
 #loading .name{
   font-size: 8rem;
+  white-space: nowrap;
 }
 
 #loading span {
@@ -327,7 +328,7 @@ header .icon-bars{
 .icon-bars .bar{
   display: block;
   background-color: var(--font-color-main);
-  transition: 1s;
+  transition: .5s;
   width: 3rem;
   height: .3rem;
   position: absolute;
@@ -341,7 +342,7 @@ header .icon-bars{
   width: 3rem;
   height: .3rem;
   position: absolute;
-  transition: 1s;
+  transition: .5s;
 }
 
 .icon-bars .bar-top{
@@ -980,7 +981,7 @@ footer p{
     position: absolute;
     top: 5rem;
     background-color: var(--background-menu);
-    transition: 1s;
+    transition: .5s;
     right: 0;
     overflow-y: hidden;
     z-index: 5;
@@ -1037,6 +1038,10 @@ footer p{
 }
 
 @media screen and (max-width: 764px){
+  #loading .name{
+    font-size: 5rem;
+  }
+
   header .logo h1{
     font-size: 3rem;
   }
@@ -1139,6 +1144,10 @@ footer p{
 @media screen and (max-width: 300px){
   p{
     font-size: 1.5rem;
+  }
+
+  #loading .name{
+    font-size: 3rem;
   }
 
   /*** HEADER ***/

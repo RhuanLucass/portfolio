@@ -147,11 +147,12 @@ function splitLetters() {
   letters.forEach((letter) => {
     if(letter === " ") countSpace++;
 
-    if(letter !== " "){
-      (text.innerHTML += `<span>${letter}</span>`);
-    }else{
+    if(letter !== " ") (text.innerHTML += `<span>${letter}</span>`)
+    else{
+      window.innerWidth <= 764 ? text.innerHTML += "<br/>" : (() => {
         countSpace === 2 ? (text.innerHTML += "<br/>") : (text.innerHTML += "<span>&nbsp;</span>")
-      }
+      })()
+    }
   });
 
   const newLetters = text.querySelectorAll(".letter-span");
