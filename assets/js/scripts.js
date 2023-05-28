@@ -5,7 +5,6 @@ const barBottom = document.querySelector('.bar-bottom');
 const mobile = document.querySelector('header nav');
 const links = document.querySelectorAll('header nav ul li a');
 const overlay = document.querySelector('.overlay');
-var heightMenu = 0;
 
 icon.addEventListener('click', transformIcon);
 
@@ -25,7 +24,7 @@ function hideMenu() {
   barTop.classList.remove("rotate-top");
   barBottom.classList.remove("rotate-bottom");
   mobile.classList.remove("desktop-toggle");
-  overlay.style.visibility = "hidden";
+  overlay.style.display = "none";
 }
 
 function showMenu() {
@@ -33,19 +32,25 @@ function showMenu() {
   barTop.classList.add("rotate-top");
   barBottom.classList.add("rotate-bottom");
   mobile.classList.add("desktop-toggle");
-  overlay.style.visibility = "visible";
+  overlay.style.display = "block";
 }
 
+
+
 const html = document.querySelector('html');
-const btnMode = document.querySelector('#mode label input');
-const animateBg = document.querySelector('#mode label .animate-bg');
+const mode = document.querySelector('#mode label');
+const btnMode = mode.querySelector('input');
 
 btnMode.addEventListener('click', switchMode);
 
 function switchMode(){
-  btnMode.checked === true ?
-  html.setAttribute('data-theme', 'dark-mode') : 
-  html.removeAttribute('data-theme');
+  btnMode.checked === true ? (() =>{
+    html.setAttribute('data-theme', 'dark-mode');
+    mode.setAttribute('data-ballon', 'Light Mode');
+  })() : (() => {
+    html.removeAttribute('data-theme');
+    mode.setAttribute('data-ballon', 'Dark Mode');
+  })()
 }
 
 const linksMenu = document.querySelectorAll('header nav ul li a[href^="#"]');
@@ -100,7 +105,7 @@ function smoothScrollTo(endY, duration) {
   }, 1000 / 60); // 60 fps
 }
 
-const dataAnimation = document.querySelectorAll('[data-animation]');
+const sections = document.querySelectorAll('[data-scroll]');
 
 window.addEventListener("scroll", scrollToPosition);
 
@@ -109,7 +114,7 @@ function scrollToPosition(e){
   const windowTop = window.scrollY + window.innerHeight * 0.85;
   const scrollTop = window.scrollY + window.innerHeight * 0.5;
   
-  dataAnimation.forEach((element) => {
+  sections.forEach((element) => {
     if(windowTop > element.offsetTop){
       sectionMenu(scrollTop);
     }
@@ -130,3 +135,101 @@ function sectionMenu(scrollTop){
     }
   })
 }
+
+
+splitLetters();
+function splitLetters() {
+  const text = document.querySelector("#loading h1");
+  const letters = text.innerHTML.split("");
+  text.innerHTML = "";
+
+  let countSpace = 0;
+  letters.forEach((letter) => {
+    if(letter === " ") countSpace++;
+
+    if(letter !== " "){
+      (text.innerHTML += `<span>${letter}</span>`);
+    }else{
+        countSpace === 2 ? (text.innerHTML += "<br/>") : (text.innerHTML += "<span>&nbsp;</span>")
+      }
+  });
+
+  const newLetters = text.querySelectorAll(".letter-span");
+}
+
+
+smoky();
+function smoky(){
+  const spans = document.querySelectorAll('#loading .name span');
+  spans.forEach((span, index) => {
+    let delay = (index/15);
+    span.style.animationDelay = delay + 's';
+  })
+}
+
+
+function write(){
+  const text = document.querySelector('main h1 .name');
+  const time = 150;
+  const textSplit = text.innerHTML.split('');
+  text.classList.add('visible');
+  text.innerHTML = '';
+  falseText = ['y', 'b', 'a', ''];
+  length = falseText.length - 1;
+
+  const position = textSplit.indexOf('L') + 1;
+  
+  
+  textSplit.splice(position, 0, ...falseText);
+
+  const newPosition = position + length;
+  
+  textSplit.forEach((letter, index) => {
+    if(index < newPosition){
+      setTimeout(() => {
+        text.innerHTML += letter;
+      }, index * time);
+    }
+    else if( index === newPosition){
+      let newIndex = index;
+      for(let i = newPosition; i > position; i--){
+        setTimeout(() => {
+          let newText = text.innerHTML.slice(0, -1)
+          text.innerHTML = newText;
+        }, newIndex++ * time);
+      }
+    }
+    else{
+      index+= length - 1;
+      setTimeout(() => {
+        text.innerHTML += letter;
+      }, index * time);
+    }
+
+  })
+}
+
+switchAnimation();
+function switchAnimation(){
+  const loading = document.querySelector('#loading');
+  const allSpan = loading.querySelectorAll('#loading .name span');
+  const evenSpan = loading.querySelectorAll('#loading span:nth-child(even)');
+  const body = document.querySelector('body');
+  
+  setTimeout(() => {
+    allSpan.forEach((span) => span.classList.add('new-animation'));
+    evenSpan.forEach((span) => span.classList.add('new-animation-even'));
+    loading.classList.add('display-none');
+
+    setTimeout(() => {
+      body.style.overflow = 'visible';
+      loading.style.display = 'none';
+      setTimeout(() => {
+        write();
+      }, 500);
+    }, 3500);
+    
+  }, 5000);
+}
+
+
