@@ -19,16 +19,16 @@
   <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body onload="preload()">
+  <div class="overlay"></div>
 
-  <section id="loading">
+  <section id="preload">
     <div class="container">
       <h1 class="name">Rhuan Lucas Barbosa Fernandes</h1>
     </div>
   </section>
 
-  <div class="overlay"></div>
-  <header data-animation="" data-scroll>
+  <header data-scroll>
     <div class="container">
       <div class="logo">
         <h1>Rhuan Lucas</h1>
@@ -61,9 +61,9 @@
     </div>
   </header>
 
-  <main data-animation="" data-scroll id="home">
+  <main data-scroll id="home">
     <div class="container">
-      <div class="image-main">
+      <div data-animation="left" class="image-main">
         <div class="image">
           <img src="assets/images/main/main.png" alt="Desenho representando o autor do portfólio.">
         </div>
@@ -74,39 +74,39 @@
         </div>
       </div>
       <div class="description-main">
-        <div class="text-main">
+        <div data-animation="right"  class="text-main">
           <h1>Oi, me chamo
           <p class="name">Rhuan Lucas</p>
           e sou Desenvolvedor Web.</h1>
           <p>Se quiser saber a respeito de minhas habilidades e um pouco mais sobre mim, está no lugar certo!</p>
         </div>
-        <div class="down-page">
-          <p>
-            Role para baixo
-            <div class='scrolldown'>
-              <div class="chevrons">
-                <div class='chevrondown'></div>
-                <div class='chevrondown'></div>
-              </div>
+      </div>
+      <div data-animation="left" class="down-page">
+        <p>
+          Role para baixo
+          <div class='scrolldown'>
+            <div class="chevrons">
+              <div class='chevrondown'></div>
+              <div class='chevrondown'></div>
             </div>
-          </p>
-        </div>
+          </div>
+        </p>
       </div>
     </div>
   </main>
   
-  <section  data-animation="" data-scroll id="portfolio">
+  <section data-scroll id="portfolio">
     <div class="container">
       <div class="description-port">
-        <div class="text-port">
+        <div data-animation="top" class="text-port">
           <h2>Portfólio</h2>
           <p>Aqui é possível acessar os projetos que desenvolvi e venho desenvolvendo. Espero que você goste do meu trabalho.</p>
         </div>
       </div>
       <div class="projects-wrapper">
         <div class="project-single">
-          <img src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
-          <div class="description-project">
+          <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
+          <div data-animation="right" class="description-project">
             <h4>Nome do site</h4>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
 
@@ -117,8 +117,8 @@
           </div>
         </div>
         <div class="project-single reverse">
-          <img src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
-          <div class="description-project">
+          <img data-animation="right" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
+          <div data-animation="left" class="description-project">
             <h4>Nome do site</h4>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
             <div class="access">
@@ -128,8 +128,8 @@
           </div>
         </div>
         <div class="project-single">
-          <img src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
-          <div class="description-project">
+          <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
+          <div data-animation="right" class="description-project">
             <h4>Nome do site</h4>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
             <div class="access">
@@ -145,73 +145,75 @@
     </div>
   </section>
 
-  <section data-animation="" data-scroll id="about">
+  <section data-scroll id="about">
     <div class="container">
       <div class="description-about">
-        <div class="text-about">
-          <h2>Sobre mim</h2>
+        <h2 data-animation="top">Sobre mim</h2>
+        <div  data-animation="bottom" class="text-about">
           <p>Se você chegou aqui, imagino que queira me conhecer um pouco mais. Então, vamos lá!</p>
           <p>Me chamo Rhuan Lucas Barbosa Fernandes e tenho 23 anos. Em 2018, iniciei meus estudos em Engenharia de Computação no CEFET-MG, graduação que não foi possível concluir, mas aprendi muito e me apaixonei pela área. Foi o local onde aprendi lógica de programação com a linguagem C e orientação a objetos com Java.</p>
           <p>Em 2020, comecei a me aprofundar no Desenvolvimento Web e realizar cursos para me aprofundar neste segmento, onde aprendi o front-end com HTML, CSS, JavaScript e um pouco de Jquery e Bootstrap, além do back-end com PHP. Continuo buscando aprimorar meus conhecimentos e realizando novos cursos e pesquisas, também estou cursando Engenharia de Software na Unopar.</p>
           <p>Caso queira saber um pouco sobre meus interesses, gosto de alguns esportes, mas a capoeira é o mais importante em minha vida. Através dela, aprendi a ter mais responsabilidade, respeito e a realizar atividades em grupo. A leitura é algo que venho introduzindo em minha rotina, pois sei de sua importância para meu desenvolvimento. Por fim, em meu tempo livre gosto de sair com amigos, jogar e assistir séries.</p>
         </div>
       </div>
-      <div data-animation="" data-scroll id="skills" class="competences">
-          <h3>Habilidades</h3>
-          <div class="competences-wrapper">
-            <span class="link" data-ballon="html" >
+      <div data-scroll id="skills" class="competences">
+          <h3 data-animation="top">Habilidades</h3>
+          <div data-animation="left" class="competences-wrapper">
+            <div class="text" data-ballon="html" >
               <img src="assets/images/competences/html.png" alt="html">
-            </span>
-            <span class="link" data-ballon="css" >
+              <p>Html</p>
+            </div>
+            <div class="text" data-ballon="css" >
               <img src="assets/images/competences/css.png" alt="css">
-            </span>
-            <span class="link" data-ballon="javascript" >
+              <p>Css</p>
+            </div>
+            <div class="text" data-ballon="javascript" >
               <img src="assets/images/competences/js.png" alt="javascript">
-            </span>
-            <span class="link" data-ballon="php" >
+            </div>
+            <div class="text" data-ballon="php" >
               <img src="assets/images/competences/php.png" alt="php">
-            </span>
-            <span class="link" data-ballon="sql" >              
+            </div>
+            <div class="text" data-ballon="sql" >              
               <img src="assets/images/competences/sql.png" alt="sql">
-            </span>
-            <span class="link" data-ballon="git" >            
+            </div>
+            <div class="text" data-ballon="git" >            
               <img src="assets/images/competences/git.png" alt="git">
-            </span>
-            <span class="link" data-ballon="jquery" >              
+            </div>
+            <div class="text" data-ballon="jquery" >              
               <img src="assets/images/competences/jquery.png" alt="jquery">
-            </span>
-            <span class="link" data-ballon="wordpress" >              
+            </div>
+            <div class="text" data-ballon="wordpress" >              
               <img src="assets/images/competences/wordpress.png" alt="wordpress">
-            </span>
-            <span class="link" data-ballon="java" >              
+            </div>
+            <div class="text" data-ballon="java" >              
               <img src="assets/images/competences/java.png" alt="java">
-            </span>
-            <span class="link" data-ballon="linguagem c" >              
+            </div>
+            <div class="text" data-ballon="linguagem c" >              
               <img src="assets/images/competences/c.png" alt="linguagem c">
-            </span>
+            </div>
           </div>
-          <h4>Iniciando em:</h4>
-          <div class="starting">
-            <span class="link" data-ballon="react" >              
+          <h4 data-animation="bottom">Iniciando em:</h4>
+          <div data-animation="right" class="starting">
+            <div class="text" data-ballon="react" >              
               <img src="assets/images/competences/react.png" alt="react">
-            </span>
-            <span class="link" data-ballon="node js" >            
+            </div>
+            <div class="text" data-ballon="node js" >            
               <img src="assets/images/competences/nodejs.png" alt="node js">
-            </span>
+            </div>
           </div>
       </div>
     </div>
   </section>
 
-  <section data-animation="" data-scroll id="contact">
+  <section data-scroll id="contact">
     <div class="container">
-      <div class="description-contact">
+      <div data-animation="top" class="description-contact">
         <h2>Contato</h2>
         <p>Se tiver interesse em entrar em contato para oportunidades de negócio e projetos, ou mesmo para perguntas e feedbacks, estou disponível para conversar. Abaixo é possível entrar em contato ou acessar minhas redes.</p>
       </div>
 
       <div class="content-contact">
-        <form action="">
+        <form data-animation="left" action="">
           <label for="name" hidden>Nome Completo</label>
           <input type="text" name="name" id="name" placeholder="Nome">
   
@@ -227,13 +229,13 @@
           <input type="submit" value="Enviar">
         </form>
 
-        <div class="contacts-wrapper">
+        <div data-animation="right" class="contacts-wrapper">
           <a href="mailto:contactrhuanlucas@gmail.com" class="email"><i class="fa-solid fa-envelope"></i><span> contactrhuanlucas<small>@gmail.com</small></span></a>
           <a target="_blank" href="https://github.com/RhuanLucass"><i class="fa-brands fa-github"></i> rhuanlucass</a>
           <a target="_blank" href="https://www.linkedin.com/in/rhuanlucass/"><i class="fa-brands fa-linkedin"></i> rhuanlucass</a>
         </div>
       </div>
-      <p class="last">Obrigado (:</p>
+      <p data-animation="right" class="last">Obrigado (:</p>
     </div>
   </section>
 

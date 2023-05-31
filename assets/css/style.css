@@ -83,7 +83,39 @@ input, textarea{
   align-items: center;
 }
 
-/* BUTTON DARK MODE */
+/*** ANIMATION ***/
+
+[data-animation] {
+  opacity: 0;
+}
+
+[data-animation="top"] {
+  transform: translate3d(0, -50px, 0);
+}
+
+[data-animation="left"] {
+  transform: translate3d(-50px, 0, 0);
+}
+
+[data-animation="right"] {
+  transform: translate3d(50px, 0, 0);
+}
+
+[data-animation="bottom"] {
+  transform: translate3d(0, 50px, 0);
+}
+
+[data-animation].animation {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: 1.5s;
+}
+
+main [data-animation].animation{
+  transition-delay: 1.5s;
+}
+
+/*** BUTTON DARK MODE ***/
 
 #mode{
   margin: 0 2rem;
@@ -168,7 +200,7 @@ input, textarea{
 }
 
 /*** FIRST-PAGE ***/
-#loading{
+#preload{
   height: 100vh;
   width: 100%;
   display: flex;
@@ -178,13 +210,12 @@ input, textarea{
   overflow: hidden;
   position: fixed;
   z-index: 100;
-  transition: 5s;
-  transition-delay: 1.5s;
+  transition: 3s;
+  transition-delay: 1s;
   opacity: 1;
 }
 
-#loading.display-none{
-  /* display: none; */
+#preload.opacity{
   opacity: 0;
 }
 
@@ -199,12 +230,24 @@ input, textarea{
   text-shadow: 0 0 15px var(--font-color-main);
 }
 
-#loading .name{
+#preload .name{
   font-size: 8rem;
   white-space: nowrap;
+  opacity: 0;
+  transition: 1s;
+  animation: loading 2s infinite !important;
 }
 
-#loading span {
+@keyframes loading {
+  0%, 100%{
+    opacity: .4;
+  }
+  50%{
+    opacity: 1;
+  }
+}
+
+#preload span {
   padding: 0 .8rem;
   display: inline-block;
   text-shadow: 0 0 40px whitesmoke;
@@ -213,15 +256,15 @@ input, textarea{
       rotate(45deg)
       skewX(-20deg)
       scale(1.5);
-  animation: enter-smoky 2.5s both;
+  animation: enter-smoky 2s both;
   opacity: 0;
 }
 
-#loading span:nth-child(even){
+#preload span:nth-child(even){
   animation-name: enter-smoky;
 }
 
-#loading span.new-animation{
+#preload span.new-animation{
   transform:
       translate3d(0,0,0)
       rotate(0deg)
@@ -232,7 +275,7 @@ input, textarea{
   animation-name: out-smoky;
 }
 
-#loading span:nth-child(even).new-animation-even{
+#preload span:nth-child(even).new-animation-even{
   animation-name: out-smoky-mirror;
 }
 
@@ -406,8 +449,16 @@ main{
 }
 
 main .container{
+  height: 100vh;
   justify-content: center;
-  gap: 10rem;
+  align-items: flex-end;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+
+main .image-main{
+  flex-shrink: 0;
+  margin-right: 2rem;
 }
 
 main .image-main img{
@@ -428,7 +479,6 @@ main .image-main .links a{
   padding: .6rem;
   border-radius: .5rem;
   font-size: 2.5rem;
-  /* box-shadow: var(--color-shadow) 0 0 15px; */
   transition: .5s;
 }
 
@@ -442,6 +492,8 @@ main .description-main{
   color: var(--font-color-main);
   font-size: 1.8rem;
   max-width: 50rem;
+  flex-shrink: 0;
+  margin-left: 2rem;
 }
 
 main .description-main h1{
@@ -586,14 +638,15 @@ main .description-main .text-main p:nth-child(3){
 /*********/
 
 .down-page{
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  position: absolute;
+  /* position: absolute;
   bottom: 3rem;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%); */
 }
 
 .down-page p{
@@ -746,6 +799,23 @@ main .description-main .text-main p:nth-child(3){
   max-width: 75%;
 }
 
+.competences .text{
+  transition: .5s;
+  filter: drop-shadow(var(--color-shadow) 0 0 5px) grayscale(1);
+  -webkit-filter: drop-shadow(var(--color-shadow) 0 0 5px) grayscale(1);
+}
+
+.competences .text img{
+  width: 5rem;
+  cursor: pointer;
+}
+
+.competences .text:hover{
+  transform: scale(1.2);
+  filter: drop-shadow(var(--color-shadow) 0 0 10px) grayscale(0);
+  -webkit-filter: drop-shadow(var(--color-shadow) 0 0 10px) grayscale(0);
+}
+
 #about .competences h3{
   font-size: 2.5rem;
   text-align: center;
@@ -759,18 +829,9 @@ main .description-main .text-main p:nth-child(3){
   gap: 2rem;
 }
 
-#about .competences img{
-  width: 5rem;
-  cursor: pointer;
-  transition: .5s;
-  filter: drop-shadow(var(--color-shadow) 0 0 5px) grayscale(1);
-  -webkit-filter: drop-shadow(var(--color-shadow) 0 0 5px) grayscale(1);
-}
-
-#about .competences img:hover{
-  transform: scale(1.2);
-  filter: drop-shadow(var(--color-shadow) 0 0 10px) grayscale(0);
-  -webkit-filter: drop-shadow(var(--color-shadow) 0 0 10px) grayscale(0);
+.competences-wrapper .text p{
+  text-align: center;
+  text-indent: 0;
 }
 
 #about .competences h4{
@@ -1038,7 +1099,7 @@ footer p{
 }
 
 @media screen and (max-width: 764px){
-  #loading .name{
+  #preload .name{
     font-size: 5rem;
   }
 
@@ -1146,7 +1207,7 @@ footer p{
     font-size: 1.5rem;
   }
 
-  #loading .name{
+  #preload .name{
     font-size: 3rem;
   }
 

@@ -105,7 +105,7 @@ function smoothScrollTo(endY, duration) {
   }, 1000 / 60); // 60 fps
 }
 
-const sections = document.querySelectorAll('[data-scroll]');
+const sections = document.querySelectorAll('[data-animation]');
 
 window.addEventListener("scroll", scrollToPosition);
 
@@ -116,6 +116,7 @@ function scrollToPosition(e){
   
   sections.forEach((element) => {
     if(windowTop > element.offsetTop){
+      element.classList.add("animation");
       sectionMenu(scrollTop);
     }
   })
@@ -139,15 +140,16 @@ function sectionMenu(scrollTop){
 
 splitLetters();
 function splitLetters() {
-  const text = document.querySelector("#loading h1");
+  const text = document.querySelector("#preload .name");
   const letters = text.innerHTML.split("");
+  text.style.opacity = '1';
   text.innerHTML = "";
 
   let countSpace = 0;
   letters.forEach((letter) => {
     if(letter === " ") countSpace++;
 
-    if(letter !== " ") (text.innerHTML += `<span>${letter}</span>`)
+    if(letter !== " ")(text.innerHTML += `<span>${letter}</span>`)
     else{
       window.innerWidth <= 764 ? text.innerHTML += "<br/>" : (() => {
         countSpace === 2 ? (text.innerHTML += "<br/>") : (text.innerHTML += "<span>&nbsp;</span>")
@@ -161,9 +163,9 @@ function splitLetters() {
 
 smoky();
 function smoky(){
-  const spans = document.querySelectorAll('#loading .name span');
+  const spans = document.querySelectorAll('#preload .name span');
   spans.forEach((span, index) => {
-    let delay = (index/15);
+    let delay = (index/10);
     span.style.animationDelay = delay + 's';
   })
 }
@@ -210,27 +212,45 @@ function write(){
   })
 }
 
-switchAnimation();
-function switchAnimation(){
-  const loading = document.querySelector('#loading');
-  const allSpan = loading.querySelectorAll('#loading .name span');
-  const evenSpan = loading.querySelectorAll('#loading span:nth-child(even)');
-  const body = document.querySelector('body');
+function animation(){
+  const animationMain = document.querySelectorAll('main [data-animation]');
   
-  setTimeout(() => {
-    allSpan.forEach((span) => span.classList.add('new-animation'));
-    evenSpan.forEach((span) => span.classList.add('new-animation-even'));
-    loading.classList.add('display-none');
-
-    setTimeout(() => {
-      body.style.overflow = 'visible';
-      loading.style.display = 'none';
-      setTimeout(() => {
-        write();
-      }, 500);
-    }, 3500);
-    
-  }, 5000);
+  animationMain.forEach((div) => {
+    div.classList.add("animation");
+  })
 }
 
+function load(){
+  setTimeout(() => {
+    const preload = document.querySelector('#preload');
+    const body = document.querySelector('body');
+    body.style.overflow = 'visible';
+    preload.style.display = 'none';
+    write();
+  }, 3000);
+  animation();
+}
 
+function switchAnimation(){
+  const preload = document.getElementById('preload');
+  const allSpan = preload.querySelectorAll('.name span');
+  const evenSpan = preload.querySelectorAll(' span:nth-child(even)');
+  
+  
+    allSpan.forEach((span) => span.classList.add('new-animation'));
+    evenSpan.forEach((span) => span.classList.add('new-animation-even'));
+    preload.classList.add('opacity');
+    load();
+}
+
+var startTime = performance.now();
+function preload(){
+  // setTimeout(() => {
+    timeLoad = 5000;
+  var endTime = performance.now();
+  var totalTime = endTime - startTime;
+  
+  
+  totalTime < timeLoad ? setTimeout(() => switchAnimation(), timeLoad - totalTime) : switchAnimation();
+  // }, 7000);
+}
