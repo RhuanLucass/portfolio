@@ -175,7 +175,7 @@ function write(){
   const text = document.querySelector('main h1 .name');
   const time = 150;
   const textSplit = text.innerHTML.split('');
-  text.classList.add('visible');
+  text.style.opacity = '1';
   text.innerHTML = '';
   falseText = ['y', 'b', 'a', ''];
   length = falseText.length - 1;
@@ -215,16 +215,16 @@ function write(){
 function animation(){
   const animationMain = document.querySelectorAll('main [data-animation]');
   
-  animationMain.forEach((div) => {
-    div.classList.add("animation");
-  })
+  animationMain.forEach((div) => setTimeout(() => div.classList.add("animation"), 1500));
 }
 
 function load(){
+  const loaded = document.getElementById('load');
+  loaded.style.display = 'block';
   setTimeout(() => {
-    const preload = document.querySelector('#preload');
+    const preload = document.getElementById('preload');
     const body = document.querySelector('body');
-    body.style.overflow = 'visible';
+    body.style.overflowY = 'visible';
     preload.style.display = 'none';
     write();
   }, 3000);

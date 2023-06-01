@@ -36,6 +36,7 @@ html[data-theme='dark-mode']{
   --color-icon: #E3FDFD;
   --background-mode: #A6E3E9;
 }
+
 body{
   overflow: hidden;
 }
@@ -52,6 +53,7 @@ a, img{
 
 a{
   text-decoration: none;
+  /* transition: color 2s !important; */
 }
 
 h2{
@@ -66,8 +68,8 @@ p{
   font-weight: normal;
 }
 
-main, section, header, p, a, h1, h2, h3, h4{
-  transition: 1.5s;
+main, section, header, p, a, h1, h2, h3, h4, span{
+  transition: .5s;
 }
 
 input, textarea{
@@ -108,11 +110,7 @@ input, textarea{
 [data-animation].animation {
   opacity: 1;
   transform: translate3d(0, 0, 0);
-  transition: 1.5s;
-}
-
-main [data-animation].animation{
-  transition-delay: 1.5s;
+  transition: 1s;
 }
 
 /*** BUTTON DARK MODE ***/
@@ -200,15 +198,25 @@ main [data-animation].animation{
 }
 
 /*** FIRST-PAGE ***/
+
+#load{
+  display: none;
+  overflow-x: hidden;
+}
+
 #preload{
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: linear-gradient( 180deg,  rgba(29,70,163,1) 5.6%, rgba(17,196,238,1) 109.7% );
   overflow: hidden;
   position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   z-index: 100;
   transition: 3s;
   transition-delay: 1s;
@@ -445,20 +453,13 @@ main{
   height: 100vh;
   max-height: 80rem;
   background: var(--background-main);
-  position: relative;
 }
 
 main .container{
-  height: 100vh;
+  height: 100%;
   justify-content: center;
-  align-items: flex-end;
-  gap: 5rem;
-  flex-wrap: wrap;
-}
-
-main .image-main{
-  flex-shrink: 0;
-  margin-right: 2rem;
+  position: relative;
+  gap: 10rem;
 }
 
 main .image-main img{
@@ -480,6 +481,7 @@ main .image-main .links a{
   border-radius: .5rem;
   font-size: 2.5rem;
   transition: .5s;
+  background-color: var(--background-third);
 }
 
 main .image-main .links a:hover{
@@ -492,8 +494,6 @@ main .description-main{
   color: var(--font-color-main);
   font-size: 1.8rem;
   max-width: 50rem;
-  flex-shrink: 0;
-  margin-left: 2rem;
 }
 
 main .description-main h1{
@@ -511,12 +511,8 @@ main h1 .name{
   letter-spacing: .7rem;
   color: var(--font-color-h1);
   text-shadow: 0 0 15px var(--font-color-main);
-  transition: 0;
-  visibility: hidden;
-}
-
-main h1 .name.visible{
-  visibility: visible;
+  transition: 1s;
+  opacity: 0;
 }
 
 main .description-main .text-main p:nth-child(3){
@@ -545,6 +541,21 @@ main .description-main .text-main p:nth-child(3){
   max-width: 70%;
   margin-left: auto;
   padding-top: 2rem;
+}
+
+.down-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: absolute;
+  bottom: 3rem;
+}
+
+.down-page p{
+  text-indent: 0;
+  font-size: 1.5rem;
+  color: var(--font-color-main);
 }
 
 /* ICON SCROLL DOWN */
@@ -637,25 +648,6 @@ main .description-main .text-main p:nth-child(3){
 
 /*********/
 
-.down-page{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  /* position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translate(-50%); */
-}
-
-.down-page p{
-  text-indent: 0;
-  font-size: 1.5rem;
-}
-
-/*********/
-
 /*** PORTFÓLIO ***/
 
 #portfolio{
@@ -739,6 +731,7 @@ main .description-main .text-main p:nth-child(3){
 
 .description-project .access a{
   color: var(--font-color-main);
+  background-color: var(--background-main);
   padding: .8rem;
   border-radius: .5rem;
   transition: .3s;
@@ -1098,7 +1091,7 @@ footer p{
   }
 }
 
-@media screen and (max-width: 764px){
+@media screen and (max-width: 764px){  
   #preload .name{
     font-size: 5rem;
   }
@@ -1110,16 +1103,31 @@ footer p{
   /*** MAIN ***/
   
   main{
-    height: 75vh;
-    padding-top: 5rem;
+    height: 85vh;
+    padding-top: 10rem;
   }
 
-  main .image-main{
-    display: none;
+  main .container{
+    justify-content: flex-end;
+    flex-direction: column-reverse;
+    gap: 4rem;
   }
 
-  .down-page{
-    display: none;
+  main .image-main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  main .image-main img{
+    width: 18rem;
+    height: 18rem;
+  }
+
+  main .image-main .links{
+    display: flex;
+    flex-direction: column;
   }
 
   /*** PORTFÓLIO ***/
