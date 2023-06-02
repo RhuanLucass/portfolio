@@ -152,12 +152,10 @@ function splitLetters() {
     if(letter !== " ")(text.innerHTML += `<span>${letter}</span>`)
     else{
       window.innerWidth <= 764 ? text.innerHTML += "<br/>" : (() => {
-        countSpace === 2 ? (text.innerHTML += "<br/>") : (text.innerHTML += "<span>&nbsp;</span>")
+        countSpace === 2 ? (text.innerHTML += "<br/>") : (text.innerHTML += "<span>&nbsp;</span>");
       })()
     }
   });
-
-  const newLetters = text.querySelectorAll(".letter-span");
 }
 
 
