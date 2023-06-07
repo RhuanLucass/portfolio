@@ -211,7 +211,7 @@ input, textarea{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient( 180deg,  rgba(29,70,163,1) 5.6%, rgba(17,196,238,1) 109.7% );
+  background-image: linear-gradient( 180deg,  rgb(25, 77, 199) 5.6%,rgb(2, 38, 94) 109.7% );
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -244,6 +244,9 @@ input, textarea{
   white-space: nowrap;
   opacity: 0;
   transition: 1s;
+}
+
+#preload .name.animation{
   animation: loading 2s infinite !important;
 }
 
@@ -458,7 +461,7 @@ main{
 }
 
 main .container{
-  height: 100vh;
+  height: 100%;
   justify-content: space-between;
   flex-direction: column;
 }
@@ -788,7 +791,6 @@ main .description-main .text-main p:nth-child(3){
 }
 
 #about .description-about .text-about{
-  /* padding: 2rem; */
   max-width: 75%;
   margin: 0 auto;
 }
@@ -1023,8 +1025,6 @@ footer p{
     display: none;
     transition: 1s;
   }
-
-  
   
   /*** HEADER ***/
   

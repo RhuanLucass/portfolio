@@ -142,7 +142,9 @@ splitLetters();
 function splitLetters() {
   const text = document.querySelector("#preload .name");
   const letters = text.innerHTML.split("");
-  text.style.opacity = '1';
+  setTimeout(() => {
+    text.classList.add('animation');
+  }, 500);
   text.innerHTML = "";
 
   let countSpace = 0;
@@ -163,7 +165,7 @@ smoky();
 function smoky(){
   const spans = document.querySelectorAll('#preload .name span');
   spans.forEach((span, index) => {
-    let delay = (index/10);
+    let delay = (index/15);
     span.style.animationDelay = delay + 's';
   })
 }
@@ -225,7 +227,7 @@ function load(){
     body.style.overflowY = 'visible';
     preload.style.display = 'none';
     write();
-  }, 3000);
+  }, 2500);
   animation();
 }
 
@@ -243,12 +245,10 @@ function switchAnimation(){
 
 var startTime = performance.now();
 function preload(){
-  // setTimeout(() => {
-    timeLoad = 5000;
+    timeLoad = 3700;
   var endTime = performance.now();
   var totalTime = endTime - startTime;
   
   
   totalTime < timeLoad ? setTimeout(() => switchAnimation(), timeLoad - totalTime) : switchAnimation();
-  // }, 7000);
 }
