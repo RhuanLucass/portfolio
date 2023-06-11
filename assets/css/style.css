@@ -19,6 +19,9 @@ html{
   --color-shadow: #00000080;
   --color-icon: #203049;
   --background-mode: #001536;
+  --background-scroll: #c3f0f3;
+  --color-scroll: linear-gradient(180deg, #1287aa, #1bc5d1);
+  --color-scroll-hover: linear-gradient(180deg, #0c5e77, #11b8c4);;
   
   font-family: 'Raleway', sans-serif;
   font-size: 62.5%; /* 1rem = 10px*/
@@ -35,6 +38,23 @@ html[data-theme='dark-mode']{
   --color-shadow: #d3d2d2a4;
   --color-icon: #E3FDFD;
   --background-mode: #A6E3E9;
+
+
+}
+
+::-webkit-scrollbar{
+  width: 1.4rem;
+  background: var(--background-scroll);
+}
+
+::-webkit-scrollbar-thumb{
+  background: var(--color-scroll);
+  border-radius: 1rem;
+  border: .2rem solid var(--background-scroll);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: var(--color-scroll-hover);
 }
 
 body{
