@@ -219,7 +219,7 @@ input, textarea{
   left: 0;
   bottom: 0;
   z-index: 100;
-  transition: 3s;
+  transition: 1.5s;
   transition-delay: 1s;
   opacity: 1;
 }
@@ -240,13 +240,13 @@ input, textarea{
 }
 
 #preload .name{
-  font-size: 6rem;
+  font-size: 5rem;
   white-space: nowrap;
   opacity: 0;
   transition: 1s;
 }
 
-#preload .name.animation{
+#preload .name.animation-name{
   animation: loading 2s infinite !important;
 }
 
@@ -276,7 +276,7 @@ input, textarea{
   animation-name: enter-smoky;
 }
 
-#preload span.new-animation{
+/* #preload span.new-animation{
   transform:
       translate3d(0,0,0)
       rotate(0deg)
@@ -285,11 +285,11 @@ input, textarea{
     text-shadow: 0 0 5px whitesmoke;  
   opacity: 1;
   animation-name: out-smoky;
-}
+} */
 
-#preload span:nth-child(even).new-animation-even{
+/* #preload span:nth-child(even).new-animation-even{
   animation-name: out-smoky-mirror;
-}
+} */
 
 @keyframes enter-smoky {
   0% {
@@ -306,7 +306,7 @@ input, textarea{
   }
 }
 
-@keyframes out-smoky {
+/* @keyframes out-smoky {
   60% {
     text-shadow: 0 0 40px whitesmoke;
   }
@@ -333,7 +333,7 @@ input, textarea{
     text-shadow: 0 0 20px whitesmoke;
     opacity: 0;
   }
-}
+} */
 
 
 /*** HEADER ***/
@@ -1101,7 +1101,7 @@ footer p{
 
 @media screen and (max-width: 764px){  
   #preload .name{
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   header .logo{

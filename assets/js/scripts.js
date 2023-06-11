@@ -143,7 +143,7 @@ function splitLetters() {
   const text = document.querySelector("#preload .name");
   const letters = text.innerHTML.split("");
   setTimeout(() => {
-    text.classList.add('animation');
+    text.classList.add('animation-name');
   }, 500);
   text.innerHTML = "";
 
@@ -165,7 +165,7 @@ smoky();
 function smoky(){
   const spans = document.querySelectorAll('#preload .name span');
   spans.forEach((span, index) => {
-    let delay = (index/15);
+    let delay = (index/10);
     span.style.animationDelay = delay + 's';
   })
 }
@@ -224,8 +224,8 @@ function load(){
   setTimeout(() => {
     const preload = document.getElementById('preload');
     const body = document.querySelector('body');
+    setTimeout(() => preload.style.display = 'none', 500);
     body.style.overflowY = 'visible';
-    preload.style.display = 'none';
     write();
   }, 2500);
   animation();
@@ -233,14 +233,9 @@ function load(){
 
 function switchAnimation(){
   const preload = document.getElementById('preload');
-  const allSpan = preload.querySelectorAll('.name span');
-  const evenSpan = preload.querySelectorAll(' span:nth-child(even)');
   
-  
-    allSpan.forEach((span) => span.classList.add('new-animation'));
-    evenSpan.forEach((span) => span.classList.add('new-animation-even'));
-    preload.classList.add('opacity');
-    load();
+  preload.classList.add('opacity');
+  load();
 }
 
 var startTime = performance.now();
@@ -251,4 +246,52 @@ function preload(){
   
   
   totalTime < timeLoad ? setTimeout(() => switchAnimation(), timeLoad - totalTime) : switchAnimation();
+}
+
+
+const btnMore = document.querySelector('.more');
+btnMore.addEventListener('click', addMore);
+
+function addMore(){
+  const projectsWrapper = document.querySelector('#portfolio .projects-wrapper');
+
+  let content = `
+  <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site">
+  <div data-animation="right" class="description-project">
+    <h4>Nome do site</h4>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
+    <div class="access">
+      <a data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i> Acessar</a>
+      <a data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i> Repositório</a>
+    </div>
+  </div>`;
+  let contentReverse = `
+  <img data-animation="right" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site">
+  <div data-animation="left" class="description-project">
+    <h4>Nome do site</h4>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
+    <div class="access">
+      <a data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i> Acessar</a>
+      <a data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i> Repositório</a>
+    </div>
+  </div>`;
+  
+  for (let i = 0; i < 3; i++){
+    let newContent = document.createElement('div');
+  newContent.className = 'project-single';
+
+  
+  if(projectsWrapper.children.length % 2 !== 0){
+    newContent.innerHTML = contentReverse;
+    newContent.classList.add('reverse');
+  }else newContent.innerHTML = content;
+
+
+    projectsWrapper.appendChild(newContent);
+    let element = document.querySelectorAll('.project-single [data-animation]');
+  
+    element.forEach((div) => setTimeout(() => div.classList.add("animation"), 250));
+  } 
+  
+
 }
