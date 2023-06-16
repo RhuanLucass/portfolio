@@ -3,4 +3,5 @@
                       'DB' => 'portfolio',
                       'USER' => 'root',
                       'PASSWD' => '']);
+
 ?>
