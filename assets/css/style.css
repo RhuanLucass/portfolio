@@ -88,10 +88,6 @@ p{
   font-weight: normal;
 }
 
-main, section, header, p, a, h1, h2, h3, h4, span{
-  transition: .5s;
-}
-
 input, textarea{
   font-family: 'Raleway', sans-serif;
 }
@@ -296,21 +292,6 @@ input, textarea{
   animation-name: enter-smoky;
 }
 
-/* #preload span.new-animation{
-  transform:
-      translate3d(0,0,0)
-      rotate(0deg)
-      skewX(0deg)
-      scale(1.5);
-    text-shadow: 0 0 5px whitesmoke;  
-  opacity: 1;
-  animation-name: out-smoky;
-} */
-
-/* #preload span:nth-child(even).new-animation-even{
-  animation-name: out-smoky-mirror;
-} */
-
 @keyframes enter-smoky {
   0% {
     text-shadow: 0 0 40px whitesmoke;
@@ -325,36 +306,6 @@ input, textarea{
     opacity: 1;
   }
 }
-
-/* @keyframes out-smoky {
-  60% {
-    text-shadow: 0 0 40px whitesmoke;
-  }
-  to {
-    transform:
-      translate3d(5rem,-15rem,0)
-      rotate(-30deg)
-      skewX(30deg)
-      scale(1.5);
-    text-shadow: 0 0 20px whitesmoke;
-    opacity: 0;
-  }
-}
-
-@keyframes out-smoky-mirror {
-  60% {
-    text-shadow: 0 0 40px whitesmoke; }
-  to {
-    transform:
-      translate3d(5rem,-15rem,0)
-      rotate(-30deg) 
-      skewX(-30deg)
-      scale(1.5);
-    text-shadow: 0 0 20px whitesmoke;
-    opacity: 0;
-  }
-} */
-
 
 /*** HEADER ***/
 

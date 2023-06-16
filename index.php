@@ -1,3 +1,12 @@
+  <?php
+  define('HOME', 'http://localhost/portfolio/');
+
+  include 'assets/php/connect.php';
+  include 'assets/php/require.php';
+  $links = new Requires();
+  $competences = new Requires();
+  $projects = new Requires();
+  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,6 +14,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rhuan Lucas</title>
+  <meta name="title" content="Portfólio - Rhuan Lucas">
+  <meta name="description" content="Se quiser saber a respeito de minhas habilidades e um pouco mais sobre mim, está no lugar certo!">
+  <base id="urlHome" href="<?= HOME ?>">
 
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +25,7 @@
 
 
   <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="<?= HOME ?>assets/css/style.css">
 </head>
 <body onload="preload()">
   <div class="overlay"></div>
@@ -63,12 +75,11 @@
         <div class="main-wrapper">
           <div data-animation="left" class="image-main">
             <div class="image">
-              <img src="assets/images/main/main.png" alt="Desenho representando o autor do portfólio.">
+              <img src="<?= HOME ?>assets/images/main/main.png" alt="Desenho representando o autor do portfólio.">
             </div>
-  
             <div class="links">
-              <a class="link" data-ballon="github"  target="_blank" href="https://github.com/RhuanLucass"><i class="fa-brands fa-github"></i></a>
-              <a class="link" data-ballon="linkedin"  target="_blank" href="https://www.linkedin.com/in/rhuanlucass/"><i class="fa-brands fa-linkedin"></i></a>
+              <a class="link" data-ballon="<?= $links->getLinks('github')['nome_link'] ?>"  target="_blank" href="<?= $links->getLinks('github')['link'] ?>"><i class="fa-brands fa-github"></i></a>
+              <a class="link" data-ballon="<?= $links->getLinks('linkedin')['nome_link'] ?>"  target="_blank" href="<?= $links->getLinks('linkedin')['link'] ?>"><i class="fa-brands fa-linkedin"></i></a>
             </div>
           </div>
           <div class="description-main">
@@ -103,40 +114,31 @@
           </div>
         </div>
         <div class="projects-wrapper">
+          <?php       
+          $allProjects = $projects->getProjects();     
+            foreach ($allProjects as $key => $value) {
+          ?>
           <div class="project-single">
-            <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
+            <img data-animation="left" src="<?= HOME ?>assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
             <div data-animation="right" class="description-project">
-              <h4>Nome do site</h4>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
+              <h4><?= $value['name_project'] ?></h4>
+              <p><?= $value['description_project'] ?></p>
 
               <div class="access">
-                <a data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i> Acessar</a>
-                <a data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i> Repositório</a>
+                <a data-ballon="Acessar"  target="_blank" href="<?= $value['link_site'] ?>"><i class="fa-solid fa-globe"></i> Acessar</a>
+                <a data-ballon="Repositório"  target="_blank" href="<?= $value['link_repository'] ?>"><i class="fa-brands fa-github"></i> Repositório</a>
               </div>
             </div>
           </div>
-          <div class="project-single reverse">
-            <img data-animation="right" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
-            <div data-animation="left" class="description-project">
-              <h4>Nome do site</h4>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
-              <div class="access">
-                <a data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i> Acessar</a>
-                <a data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i> Repositório</a>
-              </div>
-            </div>
-          </div>
-          <div class="project-single">
-            <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
-            <div data-animation="right" class="description-project">
-              <h4>Nome do site</h4>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
-              <div class="access">
-                <a data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i> Acessar</a>
-                <a data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i> Repositório</a>
-              </div>
-            </div>
-          </div>
+          <?php
+            }
+            echo "<script>
+            const project = document.querySelectorAll('.project-single');
+            project.forEach((proj, index) => {
+              if(index % 2 !== 0) proj.classList.add('reverse');
+            });
+            </script>";
+          ?>
         </div>
         <div class="more">
           <p>Ver mais<i class="fa-solid fa-chevron-down"></i></p>
@@ -159,45 +161,45 @@
             <h3 data-animation="top">Habilidades</h3>
             <div data-animation="left" class="competences-wrapper">
               <div class="text" data-ballon="html" >
-                <img src="assets/images/competences/html.png" alt="html">
+                <img src="<?= HOME ?>assets/images/competences/html.png" alt="html">
                 <p>Html</p>
               </div>
               <div class="text" data-ballon="css" >
-                <img src="assets/images/competences/css.png" alt="css">
+                <img src="<?= HOME ?>assets/images/competences/css.png" alt="css">
                 <p>Css</p>
               </div>
               <div class="text" data-ballon="javascript" >
-                <img src="assets/images/competences/js.png" alt="javascript">
+                <img src="<?= HOME ?>assets/images/competences/js.png" alt="javascript">
               </div>
               <div class="text" data-ballon="php" >
-                <img src="assets/images/competences/php.png" alt="php">
+                <img src="<?= HOME ?>assets/images/competences/php.png" alt="php">
               </div>
               <div class="text" data-ballon="sql" >              
-                <img src="assets/images/competences/sql.png" alt="sql">
+                <img src="<?= HOME ?>assets/images/competences/sql.png" alt="sql">
               </div>
               <div class="text" data-ballon="git" >            
-                <img src="assets/images/competences/git.png" alt="git">
+                <img src="<?= HOME ?>assets/images/competences/git.png" alt="git">
               </div>
               <div class="text" data-ballon="jquery" >              
-                <img src="assets/images/competences/jquery.png" alt="jquery">
+                <img src="<?= HOME ?>assets/images/competences/jquery.png" alt="jquery">
               </div>
               <div class="text" data-ballon="wordpress" >              
-                <img src="assets/images/competences/wordpress.png" alt="wordpress">
+                <img src="<?= HOME ?>assets/images/competences/wordpress.png" alt="wordpress">
               </div>
               <div class="text" data-ballon="java" >              
                 <img src="assets/images/competences/java.png" alt="java">
               </div>
               <div class="text" data-ballon="linguagem c" >              
-                <img src="assets/images/competences/c.png" alt="linguagem c">
+                <img src="<?= HOME ?>assets/images/competences/c.png" alt="linguagem c">
               </div>
             </div>
             <h4 data-animation="bottom">Iniciando em:</h4>
             <div data-animation="right" class="starting">
               <div class="text" data-ballon="react" >              
-                <img src="assets/images/competences/react.png" alt="react">
+                <img src="<?= HOME ?>assets/images/competences/react.png" alt="react">
               </div>
               <div class="text" data-ballon="node js" >            
-                <img src="assets/images/competences/nodejs.png" alt="node js">
+                <img src="<?= HOME ?>assets/images/competences/nodejs.png" alt="node js">
               </div>
             </div>
         </div>
@@ -240,7 +242,7 @@
 
     <footer>
       <div class="container">
-        <p>Todos os direitos reservados</p>
+        <p>Copyright © Rhuan Lucas</p>
       </div>
     </footer>
     <div class="balloon"></div>
@@ -248,6 +250,6 @@
 
 
   <script src="https://kit.fontawesome.com/dc951fd168.js" crossorigin="anonymous"></script>
-  <script src="assets/js/scripts.js"></script>
+  <script src="<?= HOME ?>assets/js/scripts.js"></script>
 </body>
 </html>
