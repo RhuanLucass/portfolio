@@ -117,6 +117,7 @@
           <?php       
           $allProjects = $projects->getProjects();     
             foreach ($allProjects as $key => $value) {
+              if($key >= 3) break;
           ?>
           <div class="project-single">
             <img data-animation="left" src="<?= HOME ?>assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">

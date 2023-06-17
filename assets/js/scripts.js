@@ -83,7 +83,7 @@ function getScrollTop(element){
 }
 
 function smoothScrollTo(endY, duration) {
-  const startY = window.scrollY || window.pageYOffset;
+  const startY = window.scrollY;
   const distanceY = endY - startY;
   const startTime = new Date().getTime();
 
@@ -219,6 +219,7 @@ function animation(){
 }
 
 function load(){
+  ajax();
   const loaded = document.getElementById('load');
   loaded.style.display = 'block';
   setTimeout(() => {
@@ -248,50 +249,59 @@ function preload(){
   totalTime < timeLoad ? setTimeout(() => switchAnimation(), timeLoad - totalTime) : switchAnimation();
 }
 
-
+var data;
+var i = 0;
+var count = 1;
 const btnMore = document.querySelector('.more');
 btnMore.addEventListener('click', addMore);
-
 function addMore(){
   const projectsWrapper = document.querySelector('#portfolio .projects-wrapper');
-
-  let content = `
-  <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site">
-  <div data-animation="right" class="description-project">
-    <h4>Nome do site</h4>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
+  var content = [];
+  var newContent;
+  
+  data.forEach((project,key)=> {
+    content[key] = `
+    <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site">
+    <div data-animation="right" class="description-project">
+    <h4>${project['name']}</h4>
+    <p>${project['description']}</p>
     <div class="access">
-      <a data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i> Acessar</a>
-      <a data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i> Repositório</a>
+      <a data-ballon="Acessar"  target="_blank" href="${project['link_site']}"><i class="fa-solid fa-globe"></i> Acessar</a>
+      <a data-ballon="Repositório"  target="_blank" href="${project['link_repository']}"><i class="fa-brands fa-github"></i> Repositório</a>
     </div>
   </div>`;
-  let contentReverse = `
-  <img data-animation="right" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site">
-  <div data-animation="left" class="description-project">
-    <h4>Nome do site</h4>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perspiciatis culpa pariatur quia esse cupiditate dolorem, nostrum exercitationem eius, eos tempora ipsam nihil earum consequatur modi commodi necessitatibus quaerat amet. Corporis!</p>
-    <div class="access">
-      <a data-ballon="Acessar"  target="_blank" href=""><i class="fa-solid fa-globe"></i> Acessar</a>
-      <a data-ballon="Repositório"  target="_blank" href=""><i class="fa-brands fa-github"></i> Repositório</a>
-    </div>
-  </div>`;
-  
-  for (let i = 0; i < 3; i++){
-    let newContent = document.createElement('div');
-  newContent.className = 'project-single';
+  });
 
-  
-  if(projectsWrapper.children.length % 2 !== 0){
-    newContent.innerHTML = contentReverse;
-    newContent.classList.add('reverse');
-  }else newContent.innerHTML = content;
-
-
-    projectsWrapper.appendChild(newContent);
-    let element = document.querySelectorAll('.project-single [data-animation]');
-  
-    element.forEach((div) => setTimeout(() => div.classList.add("animation"), 250));
-  } 
-  
-
+  for(i; i < 2*count; i++){
+      if(i >= data.length){
+        btnMore.style.display = 'none';
+        return;
+      } 
+      newContent = document.createElement('div');
+      newContent.className = 'project-single';
+      
+      if(projectsWrapper.children.length % 2 === 0)
+      newContent.classList.add('reverse');
+      
+      newContent.innerHTML = content[i];
+      
+      projectsWrapper.appendChild(newContent);
+      
+      let element = document.querySelectorAll('.project-single [data-animation]');
+      element.forEach((div) => setTimeout(() => div.classList.add("animation"), 250));
+    }
+    count++;
 }
+
+function ajax(){
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'assets/php/projects.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+        data = response;
+      }
+    };
+    xhr.send();
+  }
