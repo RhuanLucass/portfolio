@@ -6,12 +6,14 @@
     private $competences;
     private $links;
     private $projects;
+    private $about;
 
     public function __construct(){
       $this->pdo = $this->connection();
       $this->requireCompetences();
       $this->requireLinks();
       $this->requireProjects();
+      $this->requireAbout();
     }
 
     private function connection(){
@@ -41,6 +43,13 @@
       return $this->projects;
     }
 
+    private function requireAbout(){
+      $this->sql = $this->pdo->prepare("SELECT * FROM about");
+      $this->sql->execute();
+      $this->about = $this->sql->fetch(PDO::FETCH_ASSOC);
+      return $this->about;
+    }
+
 
     public function getCompetences(){
       return $this->competences;
@@ -55,6 +64,10 @@
 
     public function getProjects(){
       return $this->projects;
+    }
+
+    public function getAbout(){
+      return $this->about;
     }
   }
 ?>

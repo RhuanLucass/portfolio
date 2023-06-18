@@ -6,6 +6,7 @@
   $links = new Requires();
   $competences = new Requires();
   $projects = new Requires();
+  $about = new Requires();
   ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,6 +18,7 @@
   <meta name="title" content="Portfólio - Rhuan Lucas">
   <meta name="description" content="Se quiser saber a respeito de minhas habilidades e um pouco mais sobre mim, está no lugar certo!">
   <base id="urlHome" href="<?= HOME ?>">
+  <link rel="icon" type="image/x-icon" href="<?= HOME ?>assets/images/icon.ico" />
 
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -152,57 +154,51 @@
         <div class="description-about">
           <h2 data-animation="top">Sobre mim</h2>
           <div  data-animation="bottom" class="text-about">
-            <p>Se você chegou aqui, imagino que queira me conhecer um pouco mais. Então, vamos lá!</p>
-            <p>Me chamo Rhuan Lucas Barbosa Fernandes e tenho 23 anos. Em 2018, iniciei meus estudos em Engenharia de Computação no CEFET-MG, graduação que não foi possível concluir, mas aprendi muito e me apaixonei pela área. Foi o local onde aprendi lógica de programação com a linguagem C e orientação a objetos com Java.</p>
-            <p>Em 2020, comecei a me aprofundar no Desenvolvimento Web e realizar cursos para me aprofundar neste segmento, onde aprendi o front-end com HTML, CSS, JavaScript e um pouco de Jquery e Bootstrap, além do back-end com PHP. Continuo buscando aprimorar meus conhecimentos e realizando novos cursos e pesquisas, também estou cursando Engenharia de Software na Unopar.</p>
-            <p>Caso queira saber um pouco sobre meus interesses, gosto de alguns esportes, mas a capoeira é o mais importante em minha vida. Através dela, aprendi a ter mais responsabilidade, respeito e a realizar atividades em grupo. A leitura é algo que venho introduzindo em minha rotina, pois sei de sua importância para meu desenvolvimento. Por fim, em meu tempo livre gosto de sair com amigos, jogar e assistir séries.</p>
+          <?php
+            $contentAbout = $about->getAbout()['description'];
+            $arrayAbout = explode("\n", $contentAbout );
+            foreach ($arrayAbout as $key => $value) echo '<p>'.$value.'</p>';
+          ?>
           </div>
         </div>
         <div data-scroll id="skills" class="competences">
-            <h3 data-animation="top">Habilidades</h3>
-            <div data-animation="left" class="competences-wrapper">
-              <div class="text" data-ballon="html" >
-                <img src="<?= HOME ?>assets/images/competences/html.png" alt="html">
-                <p>Html</p>
-              </div>
-              <div class="text" data-ballon="css" >
-                <img src="<?= HOME ?>assets/images/competences/css.png" alt="css">
-                <p>Css</p>
-              </div>
-              <div class="text" data-ballon="javascript" >
-                <img src="<?= HOME ?>assets/images/competences/js.png" alt="javascript">
-              </div>
-              <div class="text" data-ballon="php" >
-                <img src="<?= HOME ?>assets/images/competences/php.png" alt="php">
-              </div>
-              <div class="text" data-ballon="sql" >              
-                <img src="<?= HOME ?>assets/images/competences/sql.png" alt="sql">
-              </div>
-              <div class="text" data-ballon="git" >            
-                <img src="<?= HOME ?>assets/images/competences/git.png" alt="git">
-              </div>
-              <div class="text" data-ballon="jquery" >              
-                <img src="<?= HOME ?>assets/images/competences/jquery.png" alt="jquery">
-              </div>
-              <div class="text" data-ballon="wordpress" >              
-                <img src="<?= HOME ?>assets/images/competences/wordpress.png" alt="wordpress">
-              </div>
-              <div class="text" data-ballon="java" >              
-                <img src="assets/images/competences/java.png" alt="java">
-              </div>
-              <div class="text" data-ballon="linguagem c" >              
-                <img src="<?= HOME ?>assets/images/competences/c.png" alt="linguagem c">
+          <h3 data-animation="top">Habilidades</h3>
+          <div data-animation="left" class="competences-wrapper">
+            <?php
+              $allCompetences = $competences->getCompetences();
+              foreach ($allCompetences as $key => $value) {
+                if($value['id'] < 100){
+            ?>
+            <div class="competence">
+              <img src="<?= HOME ?>assets/images/competences/<?= strtolower($value['name_competence']) ?>.png" alt="<?= $value['name_competence'] ?>">
+
+              <div class="competence-text">
+                <p><?= $value['name_competence'] ?></p>
               </div>
             </div>
-            <h4 data-animation="bottom">Iniciando em:</h4>
-            <div data-animation="right" class="starting">
-              <div class="text" data-ballon="react" >              
-                <img src="<?= HOME ?>assets/images/competences/react.png" alt="react">
-              </div>
-              <div class="text" data-ballon="node js" >            
-                <img src="<?= HOME ?>assets/images/competences/nodejs.png" alt="node js">
+            <?php
+                }
+              }
+            ?>
+          </div>
+          <h4 data-animation="bottom">Iniciando em:</h4>
+          <div data-animation="right" class="starting">
+          <?php
+              foreach ($allCompetences as $key => $value) {
+                if($value['id'] > 100){
+            ?>
+            <div class="competence">
+              <img src="<?= HOME ?>assets/images/competences/<?= strtolower($value['name_competence']) ?>.png" alt="<?= $value['name_competence'] ?>">
+
+              <div class="competence-text">
+                <p><?= $value['name_competence'] ?></p>
               </div>
             </div>
+            <?php
+                }
+              }
+            ?>
+          </div>
         </div>
       </div>
     </section>
@@ -232,9 +228,13 @@
           </form>
 
           <div data-animation="right" class="contacts-wrapper">
-            <a href="mailto:contactrhuanlucas@gmail.com" class="email"><i class="fa-solid fa-envelope"></i><span> contactrhuanlucas<small>@gmail.com</small></span></a>
-            <a target="_blank" href="https://github.com/RhuanLucass"><i class="fa-brands fa-github"></i> rhuanlucass</a>
-            <a target="_blank" href="https://www.linkedin.com/in/rhuanlucass/"><i class="fa-brands fa-linkedin"></i> rhuanlucass</a>
+            <?php
+              $email = $links->getLinks('e-mail')['nick'];
+              $arrayEmail = explode('@', $email);
+            ?>
+            <a href="mailto:<?= $email ?>" class="email"><i class="fa-solid fa-envelope"></i><span><?=$arrayEmail[0] ?><small>@<?=$arrayEmail[1] ?></small></span></a>
+            <a target="_blank" href="<?= $links->getLinks('github')['link'] ?>"><i class="fa-brands fa-github"></i> <?= $links->getLinks('github')['nick'] ?></a>
+            <a target="_blank" href="<?= $links->getLinks('linkedin')['link'] ?>"><i class="fa-brands fa-linkedin"></i> <?= $links->getLinks('linkedin')['nick'] ?></a>
           </div>
         </div>
         <p data-animation="right" class="last">Obrigado (:</p>

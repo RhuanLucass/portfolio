@@ -219,7 +219,7 @@ function animation(){
 }
 
 function load(){
-  ajax();
+  ajax('projects');
   const loaded = document.getElementById('load');
   loaded.style.display = 'block';
   setTimeout(() => {
@@ -253,6 +253,7 @@ var data;
 var i = 0;
 var count = 1;
 const btnMore = document.querySelector('.more');
+
 btnMore.addEventListener('click', addMore);
 function addMore(){
   const projectsWrapper = document.querySelector('#portfolio .projects-wrapper');
@@ -293,15 +294,15 @@ function addMore(){
     count++;
 }
 
-function ajax(){
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'assets/php/projects.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        data = response;
-      }
-    };
-    xhr.send();
-  }
+function ajax(archive){
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'assets/php/'+archive+'.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      data = response;
+    }
+  };
+  xhr.send();
+}
