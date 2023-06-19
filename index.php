@@ -1,4 +1,6 @@
-  <?php
+<?php
+// TODO: download extensions for front-end and take tests
+// TODO: configure paths
   define('HOME', 'http://localhost/portfolio/');
 
   include 'assets/php/connect.php';
@@ -122,7 +124,7 @@
               if($key >= 3) break;
           ?>
           <div class="project-single">
-            <img data-animation="left" src="<?= HOME ?>assets/images/main/Google_web_search.png" alt="Miniatura referente ao site ">
+            <img data-animation="left" src="<?= HOME ?>assets/images/projects/<?= $value['name_image'] ?>.png" alt="Miniatura referente ao site ">
             <div data-animation="right" class="description-project">
               <h4><?= $value['name_project'] ?></h4>
               <p><?= $value['description_project'] ?></p>
@@ -211,18 +213,18 @@
         </div>
 
         <div class="content-contact">
-          <form data-animation="left" action="">
+          <form data-animation="left" method="POST" action="assets/php/contact.php">
             <label for="name" hidden>Nome Completo</label>
-            <input type="text" name="name" id="name" placeholder="Nome">
+            <input type="text" name="name" id="name" placeholder="Nome" required>
     
             <label for="email" hidden>E-mail</label>
-            <input type="email" name="email" id="email" placeholder="E-mail">
+            <input type="email" name="email" id="email" placeholder="E-mail" required>
     
             <label for="cel" hidden>Celular (Opcional)</label>
-            <input type="tel" name="cel" id="cel" placeholder="Celular (Opcional)">
+            <input type="tel" name="cel" id="cel" placeholder="Celular (Opcional)" >
     
             <label for="message" hidden>Nome</label>
-            <textarea name="message" id="message" placeholder="Sua mensagem"></textarea>
+            <textarea name="message" id="message" placeholder="Sua mensagem" required></textarea>
     
             <input type="submit" value="Enviar">
           </form>

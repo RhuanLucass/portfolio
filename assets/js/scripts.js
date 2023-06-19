@@ -219,7 +219,7 @@ function animation(){
 }
 
 function load(){
-  ajax('projects');
+  ajaxContent('projects');
   const loaded = document.getElementById('load');
   loaded.style.display = 'block';
   setTimeout(() => {
@@ -262,7 +262,7 @@ function addMore(){
   
   data.forEach((project,key)=> {
     content[key] = `
-    <img data-animation="left" src="assets/images/main/Google_web_search.png" alt="Miniatura referente ao site">
+    <img data-animation="left" src="assets/images/projects/${project['name_image']}.png" alt="Miniatura referente ao site">
     <div data-animation="right" class="description-project">
     <h4>${project['name']}</h4>
     <p>${project['description']}</p>
@@ -273,7 +273,7 @@ function addMore(){
   </div>`;
   });
 
-  for(i; i < 2*count; i++){
+  for(i; i < 3*count; i++){
       if(i >= data.length){
         btnMore.style.display = 'none';
         return;
@@ -294,7 +294,7 @@ function addMore(){
     count++;
 }
 
-function ajax(archive){
+function ajaxContent(archive){
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'assets/php/'+archive+'.php', true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -305,4 +305,39 @@ function ajax(archive){
     }
   };
   xhr.send();
+}
+
+const form = document.querySelector('.content-contact form');
+form.addEventListener('submit', contactForm);
+
+function contactForm(e){
+  e.preventDefault();
+  var url = this.action;
+
+  var dados = new FormData(this);
+  var request = new XMLHttpRequest();
+
+  request.open('POST', url, true);
+
+  const submit = form.querySelector('input[type=submit]');
+  submit.value = 'Enviando...';
+
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      const inputs = form.querySelectorAll('input');
+      inputs.forEach(input => input.value = '');
+      submit.value = 'Enviar';
+      const textarea = form.querySelector('textarea');
+      textarea.value = '';
+      alert('Mensagem enviada com sucesso!');
+    } else {
+      alert('Erro ao enviar mensagem! Tente novamente mais tarde.');
+    }
+  };
+
+  request.onerror = function() {
+    console.error('Erro de conexão.');
+  };
+
+  request.send(dados);
 }

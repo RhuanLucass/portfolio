@@ -9,6 +9,7 @@
         $projectSingle = [
             "name" => $value["name_project"],
             "description" => $value["description_project"],
+            "name_image" => $value["name_image"],
             "link_site" => $value["link_site"],
             "link_repository" => $value["link_repository"]
           ];
@@ -18,4 +19,3 @@
       
       }
       echo json_encode($response);
-              
