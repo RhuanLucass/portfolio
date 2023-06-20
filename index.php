@@ -1,7 +1,9 @@
 <?php
 // TODO: download extensions for front-end and take tests
 // TODO: configure paths
+
   define('HOME', 'http://localhost/portfolio/');
+
 
   include 'assets/php/connect.php';
   include 'assets/php/require.php';

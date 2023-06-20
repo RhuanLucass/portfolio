@@ -273,7 +273,7 @@ function addMore(){
   </div>`;
   });
 
-  for(i; i < 3*count; i++){
+  for(i; i < 2*count; i++){
       if(i >= data.length){
         btnMore.style.display = 'none';
         return;
