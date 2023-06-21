@@ -1,8 +1,6 @@
 <?php
-// TODO: download extensions for front-end and take tests
-// TODO: configure paths
-
   define('HOME', 'http://localhost/portfolio/');
+  // define('HOME', 'http://rhuanlucas.infinityfreeapp.com/');
 
 
   include 'assets/php/connect.php';
@@ -21,6 +19,8 @@
   <title>Rhuan Lucas</title>
   <meta name="title" content="Portfólio - Rhuan Lucas">
   <meta name="description" content="Se quiser saber a respeito de minhas habilidades e um pouco mais sobre mim, está no lugar certo!">
+  <meta name="keywords" content="portfolio, portfólio, desenvolvedor web, programacao, programação, sites, back end, front end, rhuan lucas, design, desenvolvimento, html, css, javascript, js, php, sql, banco de dados">
+  <meta name="author" content="Seu nome aqui">
   <base id="urlHome" href="<?= HOME ?>">
   <link rel="icon" type="image/x-icon" href="<?= HOME ?>assets/images/icon.ico" />
 
@@ -126,7 +126,7 @@
               if($key >= 3) break;
           ?>
           <div class="project-single">
-            <img data-animation="left" src="<?= HOME ?>assets/images/projects/<?= $value['name_image'] ?>.png" alt="Miniatura referente ao site ">
+            <img data-animation="left" src="<?= HOME ?>assets/images/projects/<?= $value['name_image'] ?>.jpeg" alt="Miniatura referente ao site ">
             <div data-animation="right" class="description-project">
               <h4><?= $value['name_project'] ?></h4>
               <p><?= $value['description_project'] ?></p>

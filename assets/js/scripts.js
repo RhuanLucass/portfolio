@@ -262,7 +262,7 @@ function addMore(){
   
   data.forEach((project,key)=> {
     content[key] = `
-    <img data-animation="left" src="assets/images/projects/${project['name_image']}.png" alt="Miniatura referente ao site">
+    <img data-animation="left" src="assets/images/projects/${project['name_image']}.jpeg" alt="Miniatura referente ao site">
     <div data-animation="right" class="description-project">
     <h4>${project['name']}</h4>
     <p>${project['description']}</p>

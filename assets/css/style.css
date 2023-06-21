@@ -1054,10 +1054,6 @@ footer p{
     height: 250px;
   }
 
-  label.link:hover::before {
-    content: none;
-  }
-
   .text-main .name{
     font-size: 8rem;
   }
@@ -1074,6 +1070,10 @@ footer p{
 
   .text-main .name{
     font-size: 6.5rem;
+  }
+
+  .link:hover::before {
+    content: none;
   }
 }
 
@@ -1170,6 +1170,10 @@ footer p{
   
   #about .competences .competences-wrapper{
     flex-wrap: wrap;
+  }
+
+  .competences .competence{
+    filter: drop-shadow(var(--color-shadow) 0 0 5px) grayscale(0);
   }
   
   #about .competences img{
