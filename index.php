@@ -20,7 +20,7 @@
   <meta name="title" content="Portfólio - Rhuan Lucas">
   <meta name="description" content="Se quiser saber a respeito de minhas habilidades e um pouco mais sobre mim, está no lugar certo!">
   <meta name="keywords" content="portfolio, portfólio, desenvolvedor web, programacao, programação, sites, back end, front end, rhuan lucas, design, desenvolvimento, html, css, javascript, js, php, sql, banco de dados">
-  <meta name="author" content="Seu nome aqui">
+  <meta name="author" content="Rhuan Lucas">
   <base id="urlHome" href="<?= HOME ?>">
   <link rel="icon" type="image/x-icon" href="<?= HOME ?>assets/images/icon.ico" />
 
